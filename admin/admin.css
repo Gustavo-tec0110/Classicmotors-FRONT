@@ -1,0 +1,656 @@
+/* ==============================================
+   RESET & BOX-SIZING
+============================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ==============================================
+   ROOT VARIABLES - LIGHT THEME (DEFAULT)
+============================================== */
+:root {
+  --header-height: 68px;
+
+  --bg-body: #f5f7fa;
+  --bg-card: #ffffff;
+
+  --text-primary: #0f1724;
+  --text-secondary: #6b7280;
+
+  --primary: #e30613;
+  --primary-hover: #b8000c;
+
+  --shadow-sm: rgba(16, 24, 40, 0.06);
+  --shadow-md: rgba(16, 24, 40, 0.12);
+  --shadow-lg: rgba(16, 24, 40, 0.22);
+
+  --input-border: #e6e9ee;
+  --input-bg: linear-gradient(180deg, rgba(255,255,255,0.95), #fff);
+
+  --file-upload-bg: linear-gradient(180deg, rgba(255,255,255,0.86), rgba(250,250,252,0.86));
+  --file-upload-label-bg: linear-gradient(180deg, #e63946, #d62828);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --footer-height: 60px; /* pra referência, pode mudar */
+}
+
+/* ==============================================
+   DARK THEME OVERRIDES
+============================================== */
+[data-theme="dark"] {
+  --bg-body: #121212;
+  --bg-card: #1c1c1c;
+
+  --text-primary: #e6e6e6;
+  --text-secondary: #a0a0a0;
+
+  --primary: #ff1a1a;
+  --primary-hover: #e60000;
+
+  --shadow-sm: rgba(0,0,0,0.35);
+  --shadow-md: rgba(0,0,0,0.55);
+  --shadow-lg: rgba(0,0,0,0.75);
+
+  --input-border: #2c2c2c;
+  --input-bg: linear-gradient(180deg, #1b1b1b, #161616);
+
+  --file-upload-bg: linear-gradient(180deg, #1e1e1e, #181818);
+  --file-upload-label-bg: linear-gradient(180deg, #ff1a1a, #cc0000);
+}
+
+[data-theme="dark"] img {
+  filter: brightness(0.92);
+}
+
+/* ==============================================
+   BASE LAYOUT & BODY
+============================================== */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-body);
+  color: var(--text-primary);
+  transition: background .25s ease, color .25s ease;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--header-height);
+}
+
+/* ==============================================
+   ADMIN HEADER
+============================================== */
+.admin-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--input-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 1000;
+  box-shadow: 0 4px 12px var(--shadow-sm);
+  transition: background .25s ease, box-shadow .25s ease;
+}
+
+.admin-header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-btn {
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s ease;
+  border: none;
+}
+
+.theme-toggle {
+  background: var(--bg-body);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-toggle:hover {
+  background: var(--input-border);
+}
+
+.sair-btn {
+  background: var(--primary);
+  color: #fff;
+}
+
+.sair-btn:hover {
+  background: var(--primary-hover);
+}
+
+/* ==============================================
+   SITE CONTAINER
+============================================== */
+.site-container {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  padding: 24px 5%;
+  flex: 1 0 auto; /* faz o container crescer e empurrar o footer pro final */
+}
+
+/* ==============================================
+   MAIN FORM (CADASTRO)
+============================================== */
+form,
+form#form-carro {
+  background: var(--bg-card);
+  padding: 40px 30px;
+  border-radius: var(--radius-lg, 14px);
+  box-shadow: 0 14px 36px var(--shadow-md);
+  max-width: 900px;
+  width: 100%;
+  margin: 32px auto 64px; /* reduzido o margin-top pra ficar mais perto do header */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  transition: box-shadow .4s ease, transform .3s ease;
+  overflow: hidden;
+}
+
+form#form-carro:hover {
+  box-shadow: 0 24px 60px var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+form#form-carro h2#titulo-form {
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--primary);
+  text-align: center;
+  margin: 0 0 8px;
+}
+
+/* Inputs & Textareas */
+.form-input,
+form#form-carro input,
+form#form-carro select,
+form#form-carro textarea {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--input-border);
+  font-size: 15px;
+  color: var(--text-primary);
+  background: var(--input-bg);
+  transition: border-color .2s ease, box-shadow .2s ease, transform .12s ease;
+  box-sizing: border-box;
+}
+
+.form-input::placeholder {
+  color: var(--text-secondary);
+  opacity: .95;
+}
+
+.form-input:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 14px rgba(230,57,70,0.08);
+}
+
+.form-input:focus,
+.form-input:focus-visible {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 6px 20px rgba(230,57,70,0.12);
+  transform: translateY(-1px);
+}
+
+.form-input:disabled {
+  opacity: .7;
+  cursor: not-allowed;
+  background: linear-gradient(180deg, #fff, #f8f8f8);
+}
+
+.form-input.is-invalid {
+  border-color: #ef4444;
+  box-shadow: 0 6px 18px rgba(239,68,68,0.12);
+}
+
+/* ==============================================
+   SELECT - FORÇAR APARÊNCIA CUSTOMIZADA
+============================================== */
+form#form-carro select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-color: var(--bg-card);
+  background-image: none;
+
+  color: var(--text-primary);
+  border: 1px solid var(--input-border);
+  cursor: pointer;
+}
+
+/* Remove foco/realce branco do sistema */
+form#form-carro select:focus,
+form#form-carro select:focus-visible {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 6px 20px rgba(230,57,70,0.12);
+}
+
+/* Options (limitação do navegador, mas ajuda no dark) */
+form#form-carro select option {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+ 
+
+/* ==============================================
+   FILE UPLOAD AREA
+============================================== */
+.file-upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  background: var(--file-upload-bg);
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(14,20,30,0.04);
+  box-shadow: 0 6px 20px var(--shadow-sm);
+  box-sizing: border-box;
+}
+
+.file-upload-wrapper input[type="file"] {
+  display: none;
+}
+
+.file-upload-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--file-upload-label-bg);
+  border-radius: 12px;
+  border: 0;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .18s ease, filter .12s ease;
+  box-shadow: 0 8px 30px rgba(230,57,70,0.12);
+}
+
+.file-upload-label:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.03);
+}
+
+.file-upload-label:active {
+  transform: translateY(-1px) scale(.998);
+}
+
+.file-upload-label::before {
+  content: "📁";
+  display: inline-block;
+  margin-right: 6px;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.file-upload-info {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  word-break: break-word;
+  margin-left: 4px;
+  align-self: start;
+}
+
+.file-upload-wrapper.has-files .file-upload-label {
+  background: linear-gradient(180deg, #2b2f33, #1f2225);
+  color: #fff;
+}
+
+.file-upload-preview {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  position: relative;
+}
+
+.file-upload-preview .thumb {
+  width: 180px;
+  height: 170px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid rgba(230,57,70,0.18);
+  box-shadow: 0 4px 12px rgba(230,57,70,0.05);
+  position: relative;
+  transition: transform .2s ease;
+}
+
+.file-upload-preview .thumb:hover {
+  transform: scale(1.03);
+}
+
+.file-upload-preview .more-overlay,
+.file-upload-preview .thumb.more-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 36px;
+  font-weight: 700;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.remove-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #e63946;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all .2s ease;
+  user-select: none;
+}
+
+.remove-btn:hover {
+  background: #d62828;
+  transform: scale(1.15) rotate(15deg);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* ==============================================
+   SUBMIT BUTTON (CADASTRAR)
+============================================== */
+form#form-carro button#btn-submit {
+  background: linear-gradient(135deg, #ff2929, #c01515);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 16px 28px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all .35s ease, background .35s ease;
+  margin-top: 16px;
+  align-self: center;
+  box-shadow: 0 6px 20px rgba(255, 41, 41, 0.28);
+  min-width: 220px;
+}
+
+form#form-carro button#btn-submit:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 12px 28px rgba(255, 41, 41, 0.45);
+  background: linear-gradient(135deg, #c01515, #a10d0d);
+}
+
+/* ==============================================
+   CARROS LIST + CARDS
+============================================== */
+#lista-carros {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  width: 100%;
+  margin: 40px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.carro-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-card);
+  border-radius: var(--radius-md, 12px);
+  box-shadow: 0 14px 36px var(--shadow-md);
+  transition: transform .4s cubic-bezier(.25,.8,.25,1);
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 24px 32px;
+  box-sizing: border-box;
+}
+
+.carro-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 36px 80px var(--shadow-lg);
+}
+
+.card-img {
+  width: 300px;
+  height: 180px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+  transition: transform .4s ease;
+}
+
+.carro-card:hover .card-img {
+  transform: scale(1.06);
+}
+
+.carro-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 32px;
+}
+
+.carro-info strong {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.carro-info p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Action Buttons */
+.carro-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.carro-actions button {
+  padding: 12px 28px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all .35s ease;
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.12);
+}
+
+.carro-actions button.editar {
+  background: #06b800;
+  color: #fff;
+}
+
+.carro-actions button.editar:hover {
+  background: #45c015;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(69,192,21,0.2);
+}
+
+.carro-actions button.excluir {
+  background: #ff0000;
+  color: #fff;
+}
+
+.carro-actions button.excluir:hover {
+  background: #d32f2f;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(211,47,47,0.3);
+}
+
+/* Badge */
+.badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  background-color: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 10px 18px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.22);
+}
+/* ==============================================
+   Imagens Existentes
+============================================== */
+
+.imagens-existentes {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.imagens-existentes img {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+
+
+/* ==============================================
+   Barra prioridade
+============================================== */
+
+.barra-prioridade {
+  display: flex;
+  gap: 6px;
+  cursor: pointer;
+    margin-top: 10px;
+}
+
+.nivel {
+  width: 30px;
+  height: 10px;
+  border-radius: 6px;
+  background: #e5e5e5;
+  transition: all .2s ease;
+}
+
+/* Níveis coloridos */
+.nivel.ativo[data-nivel="1"] { background: #1db954; }   /* verde */
+.nivel.ativo[data-nivel="2"] { background: #a3d65c; }   /* amarelo esverdeado */
+.nivel.ativo[data-nivel="3"] { background: #ffb703; }   /* amarelo */
+.nivel.ativo[data-nivel="4"] { background: #ff3b30; }   /* vermelho */
+.nivel.ativo[data-nivel="5"] { 
+  background: #ffd60a;     /* amarelo brilhante */
+  box-shadow: 0 0 12px rgba(255, 214, 10, 0.8);
+  animation: brilho 1.2s infinite alternate;
+}
+
+/* efeito brilho nível 5 */
+@keyframes brilho {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+
+
+/* ==============================================
+   FOOTER SIMPLES
+============================================== */
+.site-footer {
+  width: 100%;
+  height: var(--footer-height);
+  background: var(--bg-card);
+  border-top: 1px solid var(--input-border);
+  color: var(--text-secondary);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+/* ==============================================
+   SAFETY: PREVENT OVERFLOW
+============================================== */
+form#form-carro input,
+form#form-carro select,
+form#form-carro textarea,
+.file-upload-wrapper,
+.file-upload-preview,
+.carro-card {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+

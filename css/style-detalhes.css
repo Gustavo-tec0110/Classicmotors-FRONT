@@ -1,0 +1,686 @@
+/* ==========================================
+   1. CONFIGURAÇÕES GERAIS E VARIÁVEIS
+========================================== */
+:root {
+    --bg-body: #f4f6f9;
+    --bg-card: #ffffff;
+    --bg-input: #ffffff;
+    --bg-carac: #f8f9fa;
+    --texto-primario: #1a1d23;
+    --texto-secundario: #4a5568;
+    --texto-claro: #718096;
+    --borda: #e2e8f0;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --destaque: #d80000;
+    --destaque-hover: #b10000;
+}
+
+[data-theme="dark"] {
+    --bg-body: #0f1115;
+    --bg-card: #1a1d23;
+    --bg-input: #2d3748;
+    --bg-carac: #252a33;
+    --texto-primario: #f7fafc;
+    --texto-secundario: #cbd5e0;
+    --texto-claro: #a0aec0;
+    --borda: #2d3748;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    --destaque: #fc0f0f;
+    --destaque-hover: #ff0000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--texto-primario);
+    line-height: 1.6;
+}
+
+/* ==========================================
+   2. HEADER
+========================================== */
+header {
+    background: var(--destaque);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+header h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+}
+
+.header-direita {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+header a:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+#toggle-dark {
+    background: white;
+    color: var(--destaque);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+#toggle-dark:hover {
+    opacity: 0.9;
+}
+
+/* ==========================================
+   3. GALERIA DE IMAGENS (ESTILO WEBMOTORS)
+========================================== */
+.galeria-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.galeria-detalhes {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 220px 220px;
+    gap: 15px;
+}
+
+.galeria-detalhes img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+}
+
+.galeria-detalhes img:first-child {
+    grid-row: span 2;
+}
+
+.galeria-detalhes img:hover {
+    filter: brightness(0.9);
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    cursor: zoom-in;
+}
+
+/* ==========================================
+   4. LAYOUT PRINCIPAL
+========================================== */
+.pagina-detalhes {
+    max-width: 1200px;
+    margin: 0 auto 50px;
+    padding: 0 20px;
+}
+
+.container-quadrados {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.quadro-info {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--borda);
+}
+
+/* INFO DO CARRO */
+.detalhes-titulo {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.descricao-curta {
+    font-size: 1.1rem;
+    color: var(--texto-secundario);
+    margin-bottom: 20px;
+}
+
+.descricao-longa {
+    background: var(--bg-carac);
+    padding: 22px;
+    border-radius: 12px;
+    border-left: 5px solid var(--destaque);
+    color: var(--texto-secundario);
+    margin: 30px 0;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.caracteristicas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+}
+
+.caracteristicas span {
+    background: var(--bg-carac);
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    color: var(--texto-claro);
+    display: flex;
+    flex-direction: column;
+}
+
+.caracteristicas strong {
+    color: var(--texto-primario);
+    font-size: 1.1rem;
+    margin-top: 6px;
+    font-weight: 700;
+}
+
+/* QUADRADO DE COMPRA */
+.detalhes-preco {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--destaque);
+    margin-bottom: 10px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    line-height: 1;
+}
+
+.txt-vendedor {
+    color: var(--texto-secundario);
+    font-size: 1rem;
+    margin: 10px 0 20px;
+}
+
+.btn-parcelas {
+    width: 100%;
+    padding: 16px;
+    background: transparent;
+    border: 2px solid var(--destaque);
+    color: var(--destaque);
+    font-weight: 700;
+    font-size: 1.05rem;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: all 0.3s ease;
+}
+
+.btn-parcelas:hover {
+    background: var(--destaque);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(216, 0, 0, 0.2);
+}
+
+.form-contato {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form-contato input,
+.form-contato textarea {
+    background: var(--bg-input);
+    border: 1px solid var(--borda);
+    color: var(--texto-primario);
+    padding: 14px;
+    border-radius: 10px;
+    outline: none;
+    font-size: 1rem;
+}
+
+.form-contato input:focus,
+.form-contato textarea:focus {
+    border-color: var(--destaque);
+    box-shadow: 0 0 0 4px rgba(216, 0, 0, 0.15);
+}
+
+.btn-enviar {
+    background: #cbd5e0;
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: not-allowed;
+    transition: all 0.3s ease;
+}
+
+.btn-enviar.ativo {
+    background: var(--destaque);
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(216, 0, 0, 0.3);
+}
+
+.btn-enviar.ativo:hover {
+    background: var(--destaque-hover);
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   5. INFO MOTORISTA
+========================================== */
+.motorista-info {
+    margin-top: 40px;
+}
+
+.info-motorista {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.dados-motorista,
+.conquistas-motorista {
+    background: var(--bg-carac);
+    padding: 24px;
+    border-radius: 14px;
+}
+
+/* ==========================================
+   6. FOOTER
+========================================== */
+footer {
+    background: var(--bg-card);
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 1px solid var(--borda);
+    color: var(--texto-claro);
+    font-size: 0.95rem;
+}
+
+/* ==========================================
+   7. RESPONSIVIDADE
+========================================== */
+@media (max-width: 900px) {
+    .container-quadrados,
+    .galeria-detalhes {
+        grid-template-columns: 1fr;
+    }
+
+    .galeria-detalhes {
+        grid-template-rows: auto;
+    }
+
+    .galeria-detalhes img:first-child {
+        height: 350px;
+        object-fit: cover;
+    }
+
+    .galeria-detalhes img {
+        height: 180px;
+    }
+
+    .info-motorista {
+        grid-template-columns: 1fr;
+    }
+
+    .detalhes-titulo {
+        font-size: 2rem;
+    }
+
+    .detalhes-preco {
+        font-size: 2.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 1rem 4%;
+    }
+
+    header h1 {
+        font-size: 1.3rem;
+    }
+
+    .detalhes-titulo {
+        font-size: 1.8rem;
+    }
+
+    .detalhes-preco {
+        font-size: 2.2rem;
+    }
+}
+
+/* ==========================================
+   8. MODAL DE ZOOM
+========================================== */
+.modal-zoom {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.modal-zoom[style*="flex"] {
+    display: flex !important;
+}
+
+.modal-conteudo {
+    max-width: 90vw;
+    max-height: 85vh;
+    border-radius: 16px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8);
+    object-fit: contain;
+    animation: zoomIn 0.4s ease;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-zoom .fechar {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    color: #fff;
+    font-size: 45px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    transition: 0.3s;
+}
+
+.modal-zoom .fechar:hover {
+    color: var(--destaque);
+    transform: scale(1.15);
+}
+
+.modal-zoom .seta {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 60px;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    user-select: none;
+    z-index: 1001;
+    padding: 20px;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.modal-zoom .seta:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.modal-zoom .seta-esquerda {
+    left: 30px;
+}
+
+.modal-zoom .seta-direita {
+    right: 30px;
+}
+
+@media (max-width: 768px) {
+    .modal-zoom .fechar {
+        top: 15px;
+        right: 20px;
+        font-size: 35px;
+    }
+
+    .modal-zoom .seta {
+        font-size: 45px;
+        padding: 15px;
+    }
+
+    .modal-zoom .seta-esquerda { left: 10px; }
+    .modal-zoom .seta-direita { right: 10px; }
+
+    .modal-conteudo {
+        max-width: 95vw;
+        max-height: 75vh;
+    }
+}
+
+/* ==========================================
+   INFORMAÇÕES DO VENDEDOR - DESTAQUE
+========================================== */
+.titulo-vendedor {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--texto-primario);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--destaque);
+    display: inline-block;
+}
+
+.motorista-info .info-motorista p {
+    margin-bottom: 12px;
+    font-size: 1rem;
+}
+
+.motorista-info strong {
+    color: var(--destaque);
+}
+
+/* ==========================================
+   CHECKBOX CUSTOM BONITA - CENTRALIZADA
+========================================== */
+.checkbox-custom {
+    display: flex;
+    align-items: center; /* MUDANÇA PRINCIPAL: centraliza verticalmente */
+    gap: 16px;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 20px 0;
+    user-select: none;
+}
+
+.checkbox-custom input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: relative;
+    height: 28px;
+    width: 28px;
+    background-color: var(--bg-input);
+    border: 2px solid var(--borda);
+    border-radius: 10px;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center; /* ajuda no centramento interno */
+}
+
+.checkbox-custom:hover .checkmark {
+    border-color: var(--destaque);
+    box-shadow: 0 0 0 5px rgba(230, 0, 0, 0.12);
+}
+
+.checkbox-custom input:checked ~ .checkmark {
+    background-color: var(--destaque);
+    border-color: var(--destaque);
+    box-shadow: 0 4px 14px rgba(230, 0, 0, 0.25);
+}
+
+/* Ícone de check - CENTRALIZADO E BONITO */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    /* Posicionamento exato no centro */
+    left: 50%;
+    top: 45%;
+    width: 8px;           /* um pouco mais grosso */
+    height: 14px;         /* mais alto pra preencher melhor */
+    border: solid white;
+    border-width: 0 4px 4px 0; /* traços mais grossos */
+    transform: translate(-50%, -50%) rotate(45deg); /* centraliza e gira */
+    transform-origin: center;
+}
+
+.checkbox-custom input:checked ~ .checkmark:after {
+    display: block;
+    animation: checkIn 0.35s cubic-bezier(0.2, 0.8, 0.4, 1) forwards;
+}
+
+@keyframes checkIn {
+    0% {
+        transform: translate(-50%, -50%) rotate(45deg) scale(0);
+        opacity: 0;
+    }
+    60% {
+        transform: translate(-50%, -50%) rotate(45deg) scale(1.1);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(45deg) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Texto da label */
+.label-text {
+    color: var(--texto-secundario);
+    flex: 1;
+}
+
+/* Foco acessível */
+.checkbox-custom input:focus-visible ~ .checkmark {
+    box-shadow: 0 0 0 5px rgba(230, 0, 0, 0.25);
+}
+
+/* ==========================================
+   BOTÃO VOLTAR - MESMO ESTILO DO MENU INDEX
+========================================== */
+.btn-voltar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    padding: 12px 22px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    white-space: nowrap;
+    border: 2px solid transparent;
+    transition: all 0.4s ease;
+}
+
+.btn-voltar i {
+    font-size: 18px;
+    transition: all 0.4s ease;
+}
+
+.btn-voltar:hover {
+    background: #ffca28; 
+    color: #000;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(255, 202, 40, 0.35);
+    border-color: #ffd700;
+}
+
+.btn-voltar:hover i {
+    color: #000;
+    transform: scale(1.2);
+}
+
+/* Animação de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Classe que aplicaremos no corpo ou container principal */
+.animar-entrada {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+body {
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+}
+
+body.loaded {
+    opacity: 1;
+}
+
+/* =========================
+   PREÇOS (ATUAL + ANTIGO)
+========================= */
+.precos {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 8px;
+}
+
+.detalhes-preco {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--destaque);
+    line-height: 1;
+}
+
+.detalhes-preco-antigo {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ff0000;
+    text-decoration: line-through;
+    opacity: 0.9;
+}

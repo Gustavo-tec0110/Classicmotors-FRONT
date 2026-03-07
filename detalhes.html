@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Veículo - WebMotors Clone</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS detalhes -->
+    <link rel="stylesheet" href="css/style-detalhes.css">
+
+    <!-- FAVICON -->
+    <link rel="icon" href="assets/Logo ClassicosBR.webp" type="image/png">
+    <link rel="shortcut icon" href="assets/Logo ClassicosBR.webp" type="image/png">
+    <link rel="apple-touch-icon" href="assets/Logo ClassicosBR.webp">
+    
+</head>
+<body>
+
+<header>
+    <h1>Detalhes do Veículo</h1>
+    <div class="header-direita">
+        <a href="index.html" class="btn-voltar" aria-label="Voltar para a página inicial">
+            <i class="fas fa-arrow-left"></i> Voltar
+        </a>
+        <button id="toggle-dark" aria-label="Alternar modo escuro">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+</header>
+
+<div class="galeria-container">
+    <div class="galeria-detalhes" id="galeria-detalhes" aria-label="Galeria de imagens do veículo">
+        <!-- Imagens serão inseridas pelo JavaScript -->
+    </div>
+</div>
+
+<div id="modal-img" class="modal-zoom" role="dialog" aria-modal="true">
+    <span class="fechar" aria-label="Fechar">&times;</span>
+    <img src="" class="modal-conteudo" id="imgModal" alt="Imagem ampliada do veículo">
+    <div class="seta seta-esquerda" aria-label="Imagem anterior">&#10094;</div>
+    <div class="seta seta-direita" aria-label="Próxima imagem">&#10095;</div>
+</div>
+
+<main class="pagina-detalhes">
+    <div class="container-quadrados">
+
+        <!-- QUADRO ESQUERDO: INFORMAÇÕES DO CARRO -->
+        <section class="quadro-info carro-info">
+            <h2 class="detalhes-titulo" id="detalhes-titulo">Carregando...</h2>
+            <p class="descricao-curta" id="descricao-curta"></p>
+            <p class="descricao-longa" id="descricao-longa"></p>
+
+            <div class="caracteristicas">
+                <span class="cidade-destaque destaque-2col">
+                    Cidade: <strong id="detalhes-cidade">Carregando...</strong>
+                </span>
+                <span>Ano: <strong id="detalhes-ano">-</strong></span>
+                <span>Combustível: <strong id="detalhes-combustivel">-</strong></span>
+                <span>Quilometragem: <strong id="detalhes-km">-</strong></span>
+                <span>Final da placa: <strong id="detalhes-placa">-</strong></span>
+                <span>Câmbio: <strong id="detalhes-cambio">-</strong></span>
+                <span>Cor: <strong id="detalhes-cor">-</strong></span>
+                <span class="aceita-troca destaque-2col">
+                    Aceita troca: <strong id="detalhes-troca">-</strong>
+                </span>
+            </div>
+        </section>
+
+        <!-- QUADRO DIREITO: COMPRA E CONTATO -->
+        <aside class="quadro-info compra-info">
+            <div class="topo-compra">
+                <div class="grupo-preco">
+                    <span class="detalhes-preco" id="detalhes-preco">R$ --.---</span>
+                      <div class="detalhes-preco-antigo"></div>
+                    <p class="txt-vendedor">Envie uma mensagem ao vendedor</p>
+                </div>
+            </div>
+
+            <form class="form-contato" id="formContato">
+                <input type="text" id="nome" name="nome" placeholder="Nome completo" required>
+                <input type="email" id="email" name="email" placeholder="E-mail" required>
+                <input type="tel" id="telefone" name="telefone" placeholder="Telefone com DDD" required>
+                <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem..." required></textarea>
+
+                <label class="checkbox-custom">
+                    <input type="checkbox" id="aceita" required>
+                    <span class="checkmark"></span>
+                    <span class="label-text">Quero receber contato por e-mail, WhatsApp ou telefone.</span>
+                </label>
+
+                <button type="submit" class="btn-enviar" disabled>Enviar mensagem</button>
+                <button type="button" class="btn-parcelas">Ver opções de financiamento</button>
+            </form>
+        </aside>
+
+        <!-- INFO DO VENDEDOR -->
+        <section class="quadro-info motorista-info">
+            <h3 class="titulo-vendedor">Informações do Vendedor</h3>
+            <div class="info-motorista">
+                <div class="dados-motorista">
+                    <p><strong>Nome:</strong> <span class="motorista-nome">Felipe Santos</span></p>
+                    <p><strong>Cidade:</strong> <span class="motorista-cidade">São Paulo (SP)</span></p>
+                    <p><strong>Telefone:</strong> <span class="motorista-telefone">(11) 98765-4321</span></p>
+                </div>
+                <div class="conquistas-motorista">
+                    <p><strong>Conquistas na plataforma</strong></p>
+                    <p>Conta criada em: <span class="motorista-criacao">Janeiro de 2024</span></p>
+                    <p>Anúncios publicados: <span class="motorista-anuncios">12</span></p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<footer role="contentinfo">
+    <p>Projeto Classic Motors  -  Feito por <strong>Gustavo Lopes</strong></p>
+</footer>
+
+<script src="java/api-config.js"></script>
+<script src="java/java-detalhes.js"></script>
+</body>
+</html>
+
+
+
+

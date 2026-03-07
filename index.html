@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebMotors Clone</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="icon" href="assets/Logo ClassicosBR.webp" type="image/png">
+    <link rel="shortcut icon" href="assets/Logo ClassicosBR.webp" type="image/png">
+    <link rel="apple-touch-icon" href="assets/Logo ClassicosBR.webp">
+</head>
+<body>
+
+<header>
+    <div class="logo-area">
+        <h1>Classic Motors</h1>
+        <span> &bull; Os melhores pra você</span>
+    </div>
+
+    <button class="hamburger" aria-label="Abrir menu">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <nav class="nav-menu" role="navigation">
+<ul class="menu-header">
+
+    <li>
+          <button id="btn-admin" style="display: none;">
+            <i class="fas fa-user-shield"></i>área Admin
+        </button>
+    </li>
+
+    <li>
+        <a href="#"><i class="fas fa-car"></i>Favoritos</a>
+    </li>
+
+    <li>
+        <a href="#"><i class="fas fa-bullhorn"></i>Anunciar</a>
+    </li>
+
+    <li>
+        <a href="admin/admin.html"><i class="fas fa-question-circle"></i>Ajuda</a>
+    </li>
+
+    <li>
+        <a href="login.html">
+            <i class="fas fa-tools"></i>Login
+        </a>
+    </li>
+
+    <li>
+        <button id="theme-toggle" aria-label="Alternar tema">
+            <i class="fas fa-moon"></i> Dark Mode
+        </button>
+    </li>
+</ul>
+
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>Clássicos Brasileiros Inesquecíveis</h1>
+        <p>Encontre Gol Quadrado, Fusca, Opala, Chevette, Kadett e muito mais!</p>
+        <span class="hero-subtitle">Os melhores anúncios de veículos nostálgicos estão aqui</span>
+    </div>
+
+    <a href="#area-busca" class="scroll-indicator">
+        <span class="arrow"></span>
+    </a>
+</section>
+
+<section id="area-busca" class="busca">
+    <div class="busca-container">
+        <i class="fas fa-search"></i>
+        <input type="text" id="input-busca" placeholder="Digite o modelo do carro..." aria-label="Buscar modelo do carro">
+    </div>
+    <button class="btn-buscar">Buscar</button>
+</section>
+
+<section id="secao-resultados" class="secao-carrossel hidden" style="margin-bottom: 50px;">
+    <div class="resultado-header" style="padding: 0 60px; margin-top: 20px;">
+        <h2 class="titulo-secao">Resultados da Busca</h2>
+        <p id="contador-resultados" style="color: var(--text-secondary);"></p>
+    </div>
+    
+    <div class="carrossel-container" style="position: relative;">
+        <div class="seta seta-esq"><i class="fas fa-chevron-left"></i></div>
+        <div class="seta seta-dir"><i class="fas fa-chevron-right"></i></div>
+
+        <div class="carrossel" id="resultado-busca">
+            </div>
+    </div>
+</section>
+
+    <button id="chat-btn" aria-label="Abrir chat">
+        <i class="fas fa-comment-dots"></i> Chat
+    </button>
+
+<section class="secao-carrossel">
+    <h2>🔥 Ofertas do Dia</h2>
+    <button class="seta seta-esq">‹</button>
+    <div class="carrossel" data-secao="ofertas"></div>
+    <button class="seta seta-dir">›</button>
+</section>
+
+<section class="secao-carrossel">
+    <h2>🚗 Clássicos Brasileiros</h2>
+    <button class="seta seta-esq">‹</button>
+    <div class="carrossel" data-secao="classicos"></div>
+    <button class="seta seta-dir">›</button>
+</section>
+
+<section class="secao-carrossel">
+    <h2>⚡ Novos e Modernos</h2>
+    <button class="seta seta-esq">‹</button>
+    <div class="carrossel" data-secao="modernos"></div>
+    <button class="seta seta-dir">›</button>
+</section>
+<footer role="contentinfo">
+    <p>Projeto Classic Motors &mdash; Feito por <strong>Gustavo Lopes</strong></p>
+</footer>
+
+<script src="java/api-config.js"></script>
+<script src="java/script.js"></script>
+</body>
+</html>
+
+
+
+
+
+

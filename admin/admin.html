@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Carros</title>
+  
+  <!-- Font Awesome para ícones (moon, etc) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+  
+    <link rel="icon" href="assets/Logo ClassicosBR.webp" type="image/png">
+    <link rel="shortcut icon" href="assets/Logo ClassicosBR.webp" type="image/png">
+    <link rel="apple-touch-icon" href="assets/Logo ClassicosBR.webp">
+</head>
+
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- Header fixo -->
+  <header class="admin-header">
+    <div class="header-left">
+      <h1>Painel Administrativo</h1>
+    </div>
+
+    <div class="header-actions">
+      <button id="theme-toggle" class="theme-toggle header-btn">
+        <i class="fas fa-moon"></i> Dark Mode
+      </button>
+      <a href="/" class="header-btn sair-btn">Sair</a>
+    </div>
+  </header>
+
+  <main class="site-container">
+
+    <!-- Seção de Listagem -->
+    <section class="lista-section">
+      <h2>Veículos Cadastrados</h2>
+      <ul id="lista-carros"></ul>
+    </section>
+
+    <!-- Formulário de Cadastro -->
+   <form id="form-carro" enctype="multipart/form-data">
+  <h2 id="titulo-form">Cadastrar Veículo</h2>
+
+  <fieldset>
+    <legend>Dados Principais</legend>
+    
+    <label for="marca">Marca *</label>
+    <input id="marca" class="form-input" placeholder="Ex: Volkswagen" required>
+
+    <label for="modelo">Modelo *</label>
+    <input id="modelo" class="form-input" placeholder="Ex: Santana 2.0 MI" required>
+
+    <label for="preco">Preço (R$) *</label>
+    <input id="preco" class="form-input" type="number" min="0" step="0.01" placeholder="Ex: 29900" required>
+
+    <label for="emPromocao">Em Promoção?</label>
+    <select id="emPromocao" class="form-input">
+      <option value="false">Não está em promoção</option>
+      <option value="true">Está em promoção</option>
+    </select>
+
+    <label for="precoAntigo" id="label-precoAntigo" style="display:none;">Preço Antigo (R$)</label>
+    <input id="precoAntigo" class="form-input" type="number" min="0" step="0.01" placeholder="Preço antes da promoção" style="display:none;">
+  </fieldset>
+
+  <fieldset>
+    <legend>Características</legend>
+    
+    <div class="form-row">
+      <div>
+        <label for="ano">Ano</label>
+        <input id="ano" class="form-input" type="number" min="1900" placeholder="Ex: 1998">
+      </div>
+      <div>
+        <label for="km">Quilometragem (KM)</label>
+        <input id="km" class="form-input" type="number" min="0" placeholder="Ex: 135000">
+      </div>
+    </div>
+
+    <label for="combustivel">Combustível</label>
+    <select id="combustivel" class="form-input">
+      <option value="">Selecione</option>
+      <option>Gasolina</option>
+      <option>Álcool</option>
+      <option>Flex</option>
+      <option>Diesel</option>
+      <option>Elétrico</option>
+    </select>
+
+    <label for="cambio">Câmbio</label>
+    <select id="cambio" class="form-input">
+      <option value="">Selecione</option>
+      <option>Manual</option>
+      <option>Automático</option>
+      <option>Automatizado</option>
+      <option>CVT</option>
+    </select>
+
+    <label for="cor">Cor</label>
+    <input id="cor" class="form-input" placeholder="Ex: Prata">
+
+    <label for="cidade">Cidade</label>
+    <input id="cidade" class="form-input" placeholder="Ex: Curitiba">
+
+    <label for="aceitaTroca">Aceita Troca?</label>
+    <select id="aceitaTroca" class="form-input">
+      <option value="false">Não aceita troca</option>
+      <option value="true">Aceita troca</option>
+    </select>
+  </fieldset>
+
+  <!-- ===== NOVO BLOCO: BADGE ===== -->
+  <fieldset>
+    <legend>Badge</legend>
+
+    <label for="badge">Escolha um badge</label>
+    <select id="badge" class="form-input">
+      <option value="">Sem badge</option>
+      <option value="Novo">Novo</option>
+      <option value="RARIDADE">Raridade</option>
+      <option value="clássico">Clássico</option>
+      <option value="OFERTA">Oferta</option>
+    </select>
+  </fieldset>
+
+  <!-- ===== NOVO BLOCO: PRIORIDADE ===== -->
+  <fieldset>
+    <legend>Prioridade</legend>
+
+    <label>Defina a prioridade (1 a 5)</label>
+    <div class="barra-prioridade" id="barra-prioridade">
+      <div class="nivel" data-nivel="1"></div>
+      <div class="nivel" data-nivel="2"></div>
+      <div class="nivel" data-nivel="3"></div>
+      <div class="nivel" data-nivel="4"></div>
+      <div class="nivel" data-nivel="5"></div>
+    </div>
+
+    <!-- input escondido para enviar no form -->
+    <input type="hidden" id="prioridade" value="0">
+  </fieldset>
+
+  <fieldset>
+    <legend>Imagens</legend>
+    <div class="file-upload-wrapper">
+      <label for="imagens" class="file-upload-label">
+        <i class="fas fa-upload"></i> Selecionar imagens (várias permitidas)
+      </label>
+      <input type="file" id="imagens" multiple accept="image/*">
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Descrição</legend>
+    
+    <label for="descricaoCurta">Descrição Curta</label>
+    <input id="descricaoCurta" class="form-input" placeholder="Ex: Turbo, falta pintura, rodas originais">
+
+    <label for="descricao">Descrição Completa</label>
+    <textarea id="descricao" class="form-input" rows="6" placeholder="Detalhes completos do veículo, estado de conservação, opcionais, etc..."></textarea>
+  </fieldset>
+
+  <button id="btn-submit" type="submit">Cadastrar Veículo</button>
+</form>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>© 2026 - Painel Administrativo | <p>Projeto Classic Motors  -  Feito por <strong>Gustavo Lopes</strong></p>
+  </footer>
+
+  <script src="../java/api-config.js"></script>
+  <script src="./admin.js"></script>
+</body>
+</html>
+
+
+
+
