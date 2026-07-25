@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Classic Motors</title>
+  <desc id="desc">Interface de marketplace automotivo</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#09090b"/><stop offset="1" stop-color="#991b1b"/></linearGradient></defs>
+  <rect width="1200" height="360" rx="28" fill="url(#bg)"/>
+  <path d="M870 250c42-105 83-138 147-138 72 0 110 38 151 138" fill="none" stroke="#fecaca" stroke-width="16" opacity=".42"/><circle cx="940" cy="255" r="48" fill="none" stroke="#fca5a5" stroke-width="15" opacity=".55"/><circle cx="1098" cy="255" r="48" fill="none" stroke="#fca5a5" stroke-width="15" opacity=".55"/>
+  <text x="72" y="86" fill="#fca5a5" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="4">FRONTEND · AUTOMOTIVO</text>
+  <text x="72" y="184" fill="#fff7f7" font-family="Arial, sans-serif" font-size="62" font-weight="800">Classic Motors</text>
+  <text x="72" y="238" fill="#fee2e2" font-family="Arial, sans-serif" font-size="27">Catálogo, detalhes e painel administrativo.</text>
+  <text x="72" y="306" fill="#fca5a5" font-family="Arial, sans-serif" font-size="18">HTML · CSS · JavaScript · REST API</text>
+</svg>
