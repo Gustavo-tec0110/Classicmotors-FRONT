@@ -1,5 +1,5 @@
 ﻿// js/auth-client.js
-const BASE_URL = window.WebMotorAPI?.BASE_URL || "http://localhost:3000";
+const BASE_URL = window.WebMotorAPI?.BASE_URL || "https://webmotors-clone-back.onrender.com";
 
 // helper para carregar script dinamicamente
 function loadScript(src, attrs = {}) {
@@ -141,9 +141,10 @@ window.addEventListener("DOMContentLoaded", () => {
       const email = document.querySelector('input[placeholder="E-mail"]').value;
       const password = document.querySelector('input[placeholder="Senha"]').value;
       try {
-        await loginWithEmail(email, password);
+        const token = await loginWithEmail(email, password);
+        const payload = parseJwt(token);
         alert("Login efetuado");
-        window.location.href = "/dashboard"; // ajustar rota
+        window.location.href = payload.role === "admin" ? "admin/admin.html" : "index.html";
       } catch (err) {
         alert(err.message);
       }

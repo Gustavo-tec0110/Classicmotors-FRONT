@@ -13,6 +13,35 @@ function isTrue(val) {
   return val === true || val === "true";
 }
 
+function parseJwt(token) {
+  const part = token.split(".")[1];
+  return JSON.parse(atob(part.replace(/-/g, "+").replace(/_/g, "/")));
+}
+
+function requireAdminSession() {
+  const token = localStorage.getItem("token");
+
+  try {
+    const payload = parseJwt(token);
+    const isExpired = payload.exp && payload.exp * 1000 <= Date.now();
+    if (payload.role !== "admin" || isExpired) throw new Error("Sessão inválida");
+    return token;
+  } catch {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userPayload");
+    window.location.replace("../login.html");
+    return null;
+  }
+}
+
+const adminToken = requireAdminSession();
+
+function authFetch(url, options = {}) {
+  const headers = new Headers(options.headers || {});
+  headers.set("Authorization", `Bearer ${adminToken}`);
+  return fetch(url, { ...options, headers });
+}
+
 /* =========================
    CARREGAR CARROS (READ)
 ========================= */
@@ -257,21 +286,19 @@ formData.append("badge", document.getElementById("badge").value);
       formData.append("precoAntigo", precoAntVal);
     }
 
-  if (currentFiles.length > 0) {
-  for (const item of currentFiles) {
-    formData.append("imagens", item.file);
-  }
-}
+    for (const item of currentFiles) {
+      if (item.file) formData.append("imagens", item.file);
+    }
 
     try {
       let res;
       if (carroEmEdicao) {
-        res = await fetch(`${API_URL}/${carroEmEdicao}`, {
+        res = await authFetch(`${API_URL}/${carroEmEdicao}`, {
           method: "PUT",
           body: formData
         });
       } else {
-        res = await fetch(API_URL, {
+        res = await authFetch(API_URL, {
           method: "POST",
           body: formData
         });
@@ -335,8 +362,12 @@ async function deletarCarro(id) {
   if (!confirm("Tem certeza que deseja excluir?")) return;
 
   try {
-    await fetch(`${API_URL}/${id}`, { method: "DELETE" });
-    carregarCarros();
+    const res = await authFetch(`${API_URL}/${id}`, { method: "DELETE" });
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || "Erro ao excluir veículo");
+    }
+    await carregarCarros();
   } catch (err) {
     console.error("Erro ao deletar carro:", err);
   }
@@ -471,8 +502,11 @@ function initDarkMode() {
     });
 }
 
-document.querySelector('.sair-btn')?.addEventListener('click', () => {
-  window.location.href = 'index.html'; 
+document.querySelector('.sair-btn')?.addEventListener('click', (event) => {
+  event.preventDefault();
+  localStorage.removeItem("token");
+  localStorage.removeItem("userPayload");
+  window.location.href = '../index.html';
 });
 
 /* =========================
@@ -510,15 +544,13 @@ initBarraPrioridade();
 
 
 /* =========================
-   Acesso sem validação de token
-========================= */
-
-/* =========================
    INIT
 ========================= */
-carregarCarros();
-togglePrecoAntigo();
-document.addEventListener('DOMContentLoaded', initDarkMode);
+if (adminToken) {
+  carregarCarros();
+  togglePrecoAntigo();
+  document.addEventListener('DOMContentLoaded', initDarkMode);
+}
 
 
 

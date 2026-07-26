@@ -1,5 +1,5 @@
 ﻿(function initWebMotorApi(global) {
-  const DEFAULT_BASE_URL = "http://localhost:3000";
+  const DEFAULT_BASE_URL = "https://webmotors-clone-back.onrender.com";
   const configured = (global.WEBMOTOR_API_BASE || "").trim();
   const saved = (global.localStorage && global.localStorage.getItem("WEBMOTOR_API_BASE") || "").trim();
   const baseUrl = (configured || saved || DEFAULT_BASE_URL).replace(/\/+$/, "");
