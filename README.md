@@ -14,9 +14,13 @@
 
 Interface responsiva para consulta e administração de anúncios automotivos. O projeto consome a [Classic Motors API](https://github.com/Gustavo-tec0110/Classicmotors--BACK), apresenta catálogo e detalhes de veículos e inclui fluxos de autenticação e painel administrativo.
 
-## Prévia
+## Screenshots
 
 ![Tela inicial do Classic Motors](docs/screenshots/home.png)
+
+## Demonstração
+
+Ainda não há um deploy público estável. A interface pode ser executada localmente e conectada à [Classic Motors API](https://github.com/Gustavo-tec0110/Classicmotors--BACK).
 
 ## Funcionalidades
 
@@ -38,11 +42,11 @@ flowchart LR
     Admin["Painel admin"] --> Modules
 ```
 
-## Stack
+## Tecnologias
 
 HTML5, CSS3 e JavaScript sem framework. A validação automatizada usa Python apenas como ferramenta de CI para verificar a sintaxe básica e referências locais dos documentos.
 
-## Executar localmente
+## Como executar localmente
 
 Por usar módulos e requisições HTTP, sirva a pasta com um servidor local:
 
@@ -54,7 +58,7 @@ python -m http.server 5500
 
 Acesse `http://localhost:5500`. O backend deve estar disponível e aceitar essa origem em `CORS_ORIGINS`.
 
-## Estrutura
+## Estrutura do projeto
 
 ```text
 admin/                  # telas administrativas
@@ -75,11 +79,17 @@ python scripts/validate_html.py
 
 O comando percorre todos os HTMLs e falha quando uma referência local aponta para um arquivo inexistente.
 
+## Aprendizados
+
+- construção de uma interface multipágina responsiva sem framework;
+- consumo de API REST e manutenção de sessão no navegador;
+- separação entre estrutura HTML, estilos e módulos JavaScript.
+
 ## Segurança
 
 O frontend armazena o token JWT no `localStorage`, uma escolha aceitável para este protótipo, mas que aumenta o impacto de uma eventual falha de XSS. Para produção, a recomendação é migrar a sessão para cookie `HttpOnly`, definir CSP e revisar todo conteúdo dinâmico antes de inseri-lo no DOM.
 
-## Roadmap
+## Próximos passos
 
 - [ ] centralizar a URL da API em configuração de ambiente;
 - [ ] substituir armazenamento de token por cookie seguro;
