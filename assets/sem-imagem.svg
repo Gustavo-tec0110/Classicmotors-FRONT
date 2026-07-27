@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640" role="img" aria-labelledby="title description">
+  <title id="title">Veículo sem imagem</title>
+  <desc id="description">Espaço reservado para a foto do veículo</desc>
+  <rect width="960" height="640" fill="#eceae5"/>
+  <path d="M265 382h430l-34-92c-9-25-33-42-60-42H367c-27 0-51 17-60 42l-42 92Z" fill="#c9c5bb"/>
+  <path d="M218 382h524c25 0 46 21 46 46v53H172v-53c0-25 21-46 46-46Z" fill="#b0aba0"/>
+  <circle cx="294" cy="481" r="57" fill="#66635d"/>
+  <circle cx="666" cy="481" r="57" fill="#66635d"/>
+  <circle cx="294" cy="481" r="26" fill="#d8d5ce"/>
+  <circle cx="666" cy="481" r="26" fill="#d8d5ce"/>
+  <text x="480" y="570" text-anchor="middle" fill="#66635d" font-family="Arial, sans-serif" font-size="28">Imagem indisponível</text>
+</svg>

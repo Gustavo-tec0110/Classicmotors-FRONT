@@ -1,62 +1,57 @@
-﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
 
-  <link rel="stylesheet" href="css/login.css" />
+    <link rel="stylesheet" href="css/login.css" />
 
-  <link rel="icon" href="assets/Logo ClassicosBR.webp" type="image/png">
-  <link rel="shortcut icon" href="assets/Logo ClassicosBR.webp" type="image/png">
-  <link rel="apple-touch-icon" href="assets/Logo ClassicosBR.webp">
-</head>
-<body>
+    <link rel="icon" href="assets/Logo ClassicosBR.webp" type="image/png" />
+    <link
+      rel="shortcut icon"
+      href="assets/Logo ClassicosBR.webp"
+      type="image/png"
+    />
+    <link rel="apple-touch-icon" href="assets/Logo ClassicosBR.webp" />
+  </head>
+  <body>
+    <a href="index.html" class="btn-voltar">Voltar</a>
 
-  <a href="index.html" class="btn-voltar">Voltar</a>
-
-  <div class="login-page">
-
+    <div class="login-page">
       <div class="left-side">
-      <img src="assets/hero-chevette.jpg" alt="Imagem de fundo">
-    </div>
+        <img src="assets/hero-chevette.jpg" alt="Imagem de fundo" />
+      </div>
 
-     <div class="right-side">
-      <div class="login-box">
-        <h2>Entrar</h2>
+      <div class="right-side">
+        <div class="login-box">
+          <h2>Entrar</h2>
 
-        <input type="text" placeholder="E-mail" />
-        <input type="password" placeholder="Senha" />
+          <input type="text" placeholder="E-mail" />
+          <input type="password" placeholder="Senha" />
 
-        <div class="row">
-          <label class="checkbox-custom">
-            <input type="checkbox">
-            <span class="checkmark"></span>
-            Lembrar-me
-          </label>
-          <a href="#">Esqueceu a senha?</a>
+          <div class="row">
+            <label class="checkbox-custom">
+              <input type="checkbox" />
+              <span class="checkmark"></span>
+              Lembrar-me
+            </label>
+            <a href="#">Esqueceu a senha?</a>
+          </div>
+
+          <button class="btn-login">Entrar</button>
+
+          <div class="or">ou</div>
+
+          <div class="socials">
+            <div id="googleBtn"></div>
+          </div>
         </div>
-
-        <button class="btn-login">Entrar</button>
-
-        <div class="or">ou</div>
-
-        <div class="socials">
-<div id="googleBtn"></div>
-        </div>
-
       </div>
     </div>
 
-  </div>
-
-  <!-- google script será carregado dinamicamente se ativado no backend -->
-<script src="java/api-config.js"></script>
-<script src="java/auth-client.js"></script>
-  
-</body>
+    <!-- google script será carregado dinamicamente se ativado no backend -->
+    <script src="java/api-config.js"></script>
+    <script src="java/auth-client.js"></script>
+  </body>
 </html>
-
-
-
-

@@ -27,9 +27,13 @@
   --shadow-lg: rgba(16, 24, 40, 0.22);
 
   --input-border: #e6e9ee;
-  --input-bg: linear-gradient(180deg, rgba(255,255,255,0.95), #fff);
+  --input-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.95), #fff);
 
-  --file-upload-bg: linear-gradient(180deg, rgba(255,255,255,0.86), rgba(250,250,252,0.86));
+  --file-upload-bg: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.86),
+    rgba(250, 250, 252, 0.86)
+  );
   --file-upload-label-bg: linear-gradient(180deg, #e63946, #d62828);
 
   --radius-sm: 8px;
@@ -52,9 +56,9 @@
   --primary: #ff1a1a;
   --primary-hover: #e60000;
 
-  --shadow-sm: rgba(0,0,0,0.35);
-  --shadow-md: rgba(0,0,0,0.55);
-  --shadow-lg: rgba(0,0,0,0.75);
+  --shadow-sm: rgba(0, 0, 0, 0.35);
+  --shadow-md: rgba(0, 0, 0, 0.55);
+  --shadow-lg: rgba(0, 0, 0, 0.75);
 
   --input-border: #2c2c2c;
   --input-bg: linear-gradient(180deg, #1b1b1b, #161616);
@@ -70,17 +74,20 @@
 /* ==============================================
    BASE LAYOUT & BODY
 ============================================== */
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: var(--bg-body);
   color: var(--text-primary);
-  transition: background .25s ease, color .25s ease;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -104,7 +111,9 @@ body {
   padding: 0 24px;
   z-index: 1000;
   box-shadow: 0 4px 12px var(--shadow-sm);
-  transition: background .25s ease, box-shadow .25s ease;
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .admin-header h1 {
@@ -132,7 +141,7 @@ body {
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
   border: none;
 }
 
@@ -183,7 +192,9 @@ form#form-carro {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  transition: box-shadow .4s ease, transform .3s ease;
+  transition:
+    box-shadow 0.4s ease,
+    transform 0.3s ease;
   overflow: hidden;
 }
 
@@ -212,37 +223,40 @@ form#form-carro textarea {
   font-size: 15px;
   color: var(--text-primary);
   background: var(--input-bg);
-  transition: border-color .2s ease, box-shadow .2s ease, transform .12s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.12s ease;
   box-sizing: border-box;
 }
 
 .form-input::placeholder {
   color: var(--text-secondary);
-  opacity: .95;
+  opacity: 0.95;
 }
 
 .form-input:hover {
   border-color: var(--primary);
-  box-shadow: 0 4px 14px rgba(230,57,70,0.08);
+  box-shadow: 0 4px 14px rgba(230, 57, 70, 0.08);
 }
 
 .form-input:focus,
 .form-input:focus-visible {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 6px 20px rgba(230,57,70,0.12);
+  box-shadow: 0 6px 20px rgba(230, 57, 70, 0.12);
   transform: translateY(-1px);
 }
 
 .form-input:disabled {
-  opacity: .7;
+  opacity: 0.7;
   cursor: not-allowed;
   background: linear-gradient(180deg, #fff, #f8f8f8);
 }
 
 .form-input.is-invalid {
   border-color: #ef4444;
-  box-shadow: 0 6px 18px rgba(239,68,68,0.12);
+  box-shadow: 0 6px 18px rgba(239, 68, 68, 0.12);
 }
 
 /* ==============================================
@@ -266,7 +280,7 @@ form#form-carro select:focus,
 form#form-carro select:focus-visible {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 6px 20px rgba(230,57,70,0.12);
+  box-shadow: 0 6px 20px rgba(230, 57, 70, 0.12);
 }
 
 /* Options (limitação do navegador, mas ajuda no dark) */
@@ -274,7 +288,6 @@ form#form-carro select option {
   background: var(--bg-card);
   color: var(--text-primary);
 }
- 
 
 /* ==============================================
    FILE UPLOAD AREA
@@ -289,7 +302,7 @@ form#form-carro select option {
   background: var(--file-upload-bg);
   padding: 12px;
   border-radius: 16px;
-  border: 1px solid rgba(14,20,30,0.04);
+  border: 1px solid rgba(14, 20, 30, 0.04);
   box-shadow: 0 6px 20px var(--shadow-sm);
   box-sizing: border-box;
 }
@@ -312,8 +325,11 @@ form#form-carro select option {
   border-radius: 12px;
   border: 0;
   cursor: pointer;
-  transition: transform .12s ease, box-shadow .18s ease, filter .12s ease;
-  box-shadow: 0 8px 30px rgba(230,57,70,0.12);
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.18s ease,
+    filter 0.12s ease;
+  box-shadow: 0 8px 30px rgba(230, 57, 70, 0.12);
 }
 
 .file-upload-label:hover {
@@ -322,7 +338,7 @@ form#form-carro select option {
 }
 
 .file-upload-label:active {
-  transform: translateY(-1px) scale(.998);
+  transform: translateY(-1px) scale(0.998);
 }
 
 .file-upload-label::before {
@@ -361,10 +377,10 @@ form#form-carro select option {
   height: 170px;
   border-radius: 8px;
   object-fit: cover;
-  border: 1px solid rgba(230,57,70,0.18);
-  box-shadow: 0 4px 12px rgba(230,57,70,0.05);
+  border: 1px solid rgba(230, 57, 70, 0.18);
+  box-shadow: 0 4px 12px rgba(230, 57, 70, 0.05);
   position: relative;
-  transition: transform .2s ease;
+  transition: transform 0.2s ease;
 }
 
 .file-upload-preview .thumb:hover {
@@ -376,7 +392,7 @@ form#form-carro select option {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   color: #fff;
   font-size: 36px;
   font-weight: 700;
@@ -403,14 +419,14 @@ form#form-carro select option {
   text-align: center;
   cursor: pointer;
   z-index: 10;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
   user-select: none;
 }
 
 .remove-btn:hover {
   background: #d62828;
   transform: scale(1.15) rotate(15deg);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 /* ==============================================
@@ -425,7 +441,9 @@ form#form-carro button#btn-submit {
   border: none;
   border-radius: 14px;
   cursor: pointer;
-  transition: all .35s ease, background .35s ease;
+  transition:
+    all 0.35s ease,
+    background 0.35s ease;
   margin-top: 16px;
   align-self: center;
   box-shadow: 0 6px 20px rgba(255, 41, 41, 0.28);
@@ -436,6 +454,18 @@ form#form-carro button#btn-submit:hover {
   transform: translateY(-2px) scale(1.04);
   box-shadow: 0 12px 28px rgba(255, 41, 41, 0.45);
   background: linear-gradient(135deg, #c01515, #a10d0d);
+}
+
+#form-status {
+  min-height: 1.4em;
+  margin: 4px 0 10px;
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+}
+
+form#form-carro button#btn-submit:disabled {
+  cursor: wait;
+  opacity: 0.65;
 }
 
 /* ==============================================
@@ -459,7 +489,7 @@ form#form-carro button#btn-submit:hover {
   background: var(--bg-card);
   border-radius: var(--radius-md, 12px);
   box-shadow: 0 14px 36px var(--shadow-md);
-  transition: transform .4s cubic-bezier(.25,.8,.25,1);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: relative;
   width: 100%;
   max-width: 1200px;
@@ -480,8 +510,8 @@ form#form-carro button#btn-submit:hover {
   object-fit: cover;
   flex-shrink: 0;
   border-radius: 14px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.18);
-  transition: transform .4s ease;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+  transition: transform 0.4s ease;
 }
 
 .carro-card:hover .card-img {
@@ -522,7 +552,7 @@ form#form-carro button#btn-submit:hover {
   font-weight: 600;
   border: none;
   cursor: pointer;
-  transition: all .35s ease;
+  transition: all 0.35s ease;
   box-shadow: 0 4px 12px rgba(255, 0, 0, 0.12);
 }
 
@@ -534,7 +564,7 @@ form#form-carro button#btn-submit:hover {
 .carro-actions button.editar:hover {
   background: #45c015;
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(69,192,21,0.2);
+  box-shadow: 0 10px 20px rgba(69, 192, 21, 0.2);
 }
 
 .carro-actions button.excluir {
@@ -545,7 +575,7 @@ form#form-carro button#btn-submit:hover {
 .carro-actions button.excluir:hover {
   background: #d32f2f;
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(211,47,47,0.3);
+  box-shadow: 0 10px 20px rgba(211, 47, 47, 0.3);
 }
 
 /* Badge */
@@ -561,7 +591,7 @@ form#form-carro button#btn-submit:hover {
   text-transform: uppercase;
   padding: 10px 18px;
   border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.22);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
 }
 /* ==============================================
    Imagens Existentes
@@ -581,8 +611,6 @@ form#form-carro button#btn-submit:hover {
   border: 1px solid #ddd;
 }
 
-
-
 /* ==============================================
    Barra prioridade
 ============================================== */
@@ -591,7 +619,7 @@ form#form-carro button#btn-submit:hover {
   display: flex;
   gap: 6px;
   cursor: pointer;
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .nivel {
@@ -599,26 +627,37 @@ form#form-carro button#btn-submit:hover {
   height: 10px;
   border-radius: 6px;
   background: #e5e5e5;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
 
 /* Níveis coloridos */
-.nivel.ativo[data-nivel="1"] { background: #1db954; }   /* verde */
-.nivel.ativo[data-nivel="2"] { background: #a3d65c; }   /* amarelo esverdeado */
-.nivel.ativo[data-nivel="3"] { background: #ffb703; }   /* amarelo */
-.nivel.ativo[data-nivel="4"] { background: #ff3b30; }   /* vermelho */
-.nivel.ativo[data-nivel="5"] { 
-  background: #ffd60a;     /* amarelo brilhante */
+.nivel.ativo[data-nivel="1"] {
+  background: #1db954;
+} /* verde */
+.nivel.ativo[data-nivel="2"] {
+  background: #a3d65c;
+} /* amarelo esverdeado */
+.nivel.ativo[data-nivel="3"] {
+  background: #ffb703;
+} /* amarelo */
+.nivel.ativo[data-nivel="4"] {
+  background: #ff3b30;
+} /* vermelho */
+.nivel.ativo[data-nivel="5"] {
+  background: #ffd60a; /* amarelo brilhante */
   box-shadow: 0 0 12px rgba(255, 214, 10, 0.8);
   animation: brilho 1.2s infinite alternate;
 }
 
 /* efeito brilho nível 5 */
 @keyframes brilho {
-  from { transform: scale(1); }
-  to { transform: scale(1.05); }
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
 }
-
 
 /* ==============================================
    FOOTER SIMPLES
@@ -634,7 +673,7 @@ form#form-carro button#btn-submit:hover {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .site-footer p {
@@ -653,4 +692,3 @@ form#form-carro textarea,
   max-width: 100%;
   box-sizing: border-box;
 }
-

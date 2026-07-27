@@ -34,6 +34,10 @@ O serviço utiliza a modalidade gratuita do Render e pode levar alguns segundos 
 - sessão persistida no navegador;
 - área administrativa para manutenção de anúncios;
 - integração REST com o backend Classic Motors.
+- busca combinada com categoria e ordenação por preço, prioridade ou ano;
+- estados explícitos de carregamento, erro, cache, resultado vazio e imagem
+  indisponível;
+- detalhes consultados diretamente pelo identificador do veículo.
 
 ## Arquitetura
 
@@ -59,7 +63,9 @@ cd Classicmotors-FRONT
 python -m http.server 5500
 ```
 
-Acesse `http://localhost:5500`. O backend deve estar disponível e aceitar essa origem em `CORS_ORIGINS`.
+Acesse `http://localhost:5500`. Em `localhost`, o frontend usa automaticamente
+`http://localhost:3000`; em produção, usa a API publicada. O backend deve estar
+disponível e aceitar essa origem em `CORS_ORIGINS`.
 
 ## Estrutura do projeto
 
@@ -94,7 +100,7 @@ O frontend armazena o token JWT no `localStorage`, uma escolha aceitável para e
 
 ## Próximos passos
 
-- [ ] centralizar a URL da API em configuração de ambiente;
+- [x] centralizar a URL da API e distinguir execução local de produção;
 - [ ] substituir armazenamento de token por cookie seguro;
 - [ ] adicionar testes E2E dos fluxos críticos;
 - [ ] melhorar acessibilidade de formulários e modais;

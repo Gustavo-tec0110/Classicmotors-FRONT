@@ -1,5 +1,6 @@
 ﻿// js/auth-client.js
-const BASE_URL = window.WebMotorAPI?.BASE_URL || "https://webmotors-clone-back.onrender.com";
+const BASE_URL =
+  window.WebMotorAPI?.BASE_URL || "https://webmotors-clone-back.onrender.com";
 
 // helper para carregar script dinamicamente
 function loadScript(src, attrs = {}) {
@@ -28,19 +29,22 @@ async function initAuthClient() {
     }
 
     // carrega SDK do Google dinamicamente
-    await loadScript("https://accounts.google.com/gsi/client", { async: true, defer: true });
+    await loadScript("https://accounts.google.com/gsi/client", {
+      async: true,
+      defer: true,
+    });
 
     // inicializa botão (mesma lógica que você já tinha)
     google.accounts.id.initialize({
-      client_id: "900520090831-tocd8s3mis8o5jo4tsgs4nim9vs96ugh.apps.googleusercontent.com",
-      callback: handleGoogleLogin
+      client_id:
+        "900520090831-tocd8s3mis8o5jo4tsgs4nim9vs96ugh.apps.googleusercontent.com",
+      callback: handleGoogleLogin,
     });
 
-    google.accounts.id.renderButton(
-      document.getElementById("googleBtn"),
-      { theme: "outline", size: "large" }
-    );
-
+    google.accounts.id.renderButton(document.getElementById("googleBtn"), {
+      theme: "outline",
+      size: "large",
+    });
   } catch (err) {
     console.error("Erro ao checar recurso Google ou carregar SDK:", err);
     const googleBtnContainer = document.getElementById("googleBtn");
@@ -55,7 +59,7 @@ async function handleGoogleLogin(response) {
     const res = await fetch(`${BASE_URL}/auth/google`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token })
+      body: JSON.stringify({ token }),
     });
 
     if (!res.ok) {
@@ -105,7 +109,7 @@ async function loginWithEmail(email, password) {
   const res = await fetch(`${BASE_URL}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password })
+    body: JSON.stringify({ email, password }),
   });
 
   if (!res.ok) {
@@ -139,18 +143,18 @@ window.addEventListener("DOMContentLoaded", () => {
     btnLogin.addEventListener("click", async (e) => {
       e.preventDefault();
       const email = document.querySelector('input[placeholder="E-mail"]').value;
-      const password = document.querySelector('input[placeholder="Senha"]').value;
+      const password = document.querySelector(
+        'input[placeholder="Senha"]',
+      ).value;
       try {
         const token = await loginWithEmail(email, password);
         const payload = parseJwt(token);
         alert("Login efetuado");
-        window.location.href = payload.role === "admin" ? "admin/admin.html" : "index.html";
+        window.location.href =
+          payload.role === "admin" ? "admin/admin.html" : "index.html";
       } catch (err) {
         alert(err.message);
       }
     });
   }
 });
-
-
-
