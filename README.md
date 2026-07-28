@@ -22,6 +22,12 @@ Interface responsiva para consulta e administração de anúncios automotivos. O
 
 - **Aplicação:** [classicmotors-front.onrender.com](https://classicmotors-front.onrender.com)
 - **API:** [webmotors-clone-back.onrender.com](https://webmotors-clone-back.onrender.com)
+- **Login administrativo:** [classicmotors-front.onrender.com/login.html](https://classicmotors-front.onrender.com/login.html)
+
+Credenciais de demonstração:
+
+- **E-mail:** `admin@exemplo.com`
+- **Senha:** `admin123`
 
 O serviço utiliza a modalidade gratuita do Render e pode levar alguns segundos para responder após um período de inatividade.
 
@@ -30,7 +36,7 @@ O serviço utiliza a modalidade gratuita do Render e pode levar alguns segundos 
 - catálogo de veículos;
 - página de detalhes com galeria;
 - navegação responsiva e tema escuro;
-- cadastro e login;
+- login administrativo;
 - sessão persistida no navegador;
 - área administrativa para manutenção de anúncios;
 - integração REST com o backend Classic Motors.
