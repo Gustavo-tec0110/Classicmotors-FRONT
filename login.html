@@ -1,56 +1,94 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
-
-    <link rel="stylesheet" href="css/login.css" />
-
-    <link rel="icon" href="assets/Logo ClassicosBR.webp" type="image/png" />
+    <title>Acesso administrativo — Classic Motors</title>
     <link
-      rel="shortcut icon"
-      href="assets/Logo ClassicosBR.webp"
-      type="image/png"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
     />
-    <link rel="apple-touch-icon" href="assets/Logo ClassicosBR.webp" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/login.css" />
+    <link rel="icon" href="assets/Logo ClassicosBR.webp" type="image/webp" />
   </head>
   <body>
-    <a href="index.html" class="btn-voltar">Voltar</a>
-
-    <div class="login-page">
-      <div class="left-side">
-        <img src="assets/hero-chevette.jpg" alt="Imagem de fundo" />
-      </div>
-
-      <div class="right-side">
-        <div class="login-box">
-          <h2>Entrar</h2>
-
-          <input type="text" placeholder="E-mail" />
-          <input type="password" placeholder="Senha" />
-
-          <div class="row">
-            <label class="checkbox-custom">
-              <input type="checkbox" />
-              <span class="checkmark"></span>
-              Lembrar-me
-            </label>
-            <a href="#">Esqueceu a senha?</a>
-          </div>
-
-          <button class="btn-login">Entrar</button>
-
-          <div class="or">ou</div>
-
-          <div class="socials">
-            <div id="googleBtn"></div>
-          </div>
+    <main class="login-page">
+      <section class="login-visual" aria-label="Classic Motors">
+        <img src="assets/hero-chevette.jpg" alt="" />
+        <div class="login-visual-overlay">
+          <a class="brand" href="index.html" aria-label="Classic Motors — início">
+            <img src="assets/Logo ClassicosBR.webp" alt="" />
+            <span>Classic Motors</span>
+          </a>
+          <p>Curadoria, história e paixão por grandes automóveis.</p>
         </div>
-      </div>
-    </div>
+      </section>
 
-    <!-- google script será carregado dinamicamente se ativado no backend -->
+      <section class="login-content">
+        <a href="index.html" class="back-link">
+          <i class="fas fa-arrow-left" aria-hidden="true"></i>
+          Voltar para o site
+        </a>
+
+        <div class="login-box">
+          <span class="restricted-badge">
+            <i class="fas fa-shield-halved" aria-hidden="true"></i>
+            Área restrita
+          </span>
+          <h1>Acesso administrativo</h1>
+          <p class="login-intro">
+            Área restrita aos administradores da concessionária.
+          </p>
+
+          <form id="admin-login-form" novalidate>
+            <label for="email">E-mail</label>
+            <div class="input-wrap">
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="username"
+                placeholder="seu@email.com"
+                required
+              />
+            </div>
+
+            <label for="password">Senha</label>
+            <div class="input-wrap">
+              <i class="fas fa-lock" aria-hidden="true"></i>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                placeholder="Digite sua senha"
+                required
+              />
+            </div>
+
+            <p id="login-error" class="login-message error" role="alert" hidden>
+              E-mail ou senha inválidos.
+            </p>
+
+            <button class="btn-login" type="submit">
+              <span>Entrar no painel</span>
+              <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </button>
+          </form>
+
+          <p class="security-note">
+            <i class="fas fa-lock" aria-hidden="true"></i>
+            Acesso monitorado e protegido.
+          </p>
+        </div>
+      </section>
+    </main>
+
     <script src="java/api-config.js"></script>
     <script src="java/auth-client.js"></script>
   </body>

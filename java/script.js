@@ -6,9 +6,30 @@ let carrosData = []; // Variável global para armazenar os dados do back-end
 
 document.addEventListener("DOMContentLoaded", () => {
   initDarkMode();
+  initPublicNavigation();
   carregarCarros();
   configurarBusca(); // Inicializa os ouvintes da busca
 });
+
+function initPublicNavigation() {
+  const toggle = document.querySelector(".hamburger");
+  const menu = document.querySelector(".menu-header");
+  if (!toggle || !menu) return;
+
+  const setOpen = (open) => {
+    menu.classList.toggle("active", open);
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+    toggle.querySelector("i")?.classList.toggle("fa-times", open);
+    toggle.querySelector("i")?.classList.toggle("fa-bars", !open);
+  };
+
+  toggle.setAttribute("aria-expanded", "false");
+  toggle.addEventListener("click", () => setOpen(!menu.classList.contains("active")));
+  menu.addEventListener("click", (event) => {
+    if (event.target.closest("a, button")) setOpen(false);
+  });
+}
 /* =========================
     1. CARREGAR CARROS
 ========================== */
@@ -476,27 +497,5 @@ function initDarkMode() {
     document.documentElement.dataset.theme = novoTema;
     localStorage.setItem("theme", novoTema);
     atualizarBotaoUI(novoTema);
-  });
-}
-
-/* =========================
-   9. Validação do Token
-========================== */
-
-const token = localStorage.getItem("token");
-
-if (token) {
-  try {
-    const payload = JSON.parse(atob(token.split(".")[1]));
-    if (payload.role === "admin") {
-      document.getElementById("btn-admin").style.display = "block";
-    }
-  } catch {}
-}
-
-const adminBtn = document.getElementById("btn-admin");
-if (adminBtn) {
-  adminBtn.addEventListener("click", () => {
-    window.location.href = "admin/admin.html";
   });
 }

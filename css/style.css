@@ -97,6 +97,14 @@ footer {
   font-size: 16px;
 }
 
+.portfolio-notice {
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
 /* ======================= OUTROS ======================= */
 .hidden {
   display: none !important;
@@ -157,8 +165,19 @@ header {
 }
 .hamburger {
   display: none;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.14);
+  color: #fff;
   font-size: 28px;
   cursor: pointer;
+}
+
+.hamburger:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
 }
 .menu-header {
   display: flex;
@@ -192,6 +211,44 @@ header {
 .menu-header a:hover i {
   color: #000;
   transform: scale(1.2);
+}
+
+.menu-header .admin-access {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(22, 22, 22, 0.18);
+  color: #fff;
+  box-shadow: none;
+}
+
+.menu-header .admin-access:hover {
+  border-color: rgba(255, 255, 255, 0.72);
+  background: rgba(22, 22, 22, 0.3);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+}
+
+.admin-logout {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 9px;
+  background: transparent;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-logout:hover {
+  background: rgba(0, 0, 0, 0.16);
+}
+
+.admin-access:focus-visible,
+.admin-logout:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
 }
 [data-theme="dark"] .menu-header a {
   background: #00000000;
@@ -358,6 +415,26 @@ header {
   }
 }
 
+@media (max-width: 1180px) and (min-width: 769px) {
+  header {
+    padding-inline: 24px;
+  }
+
+  .logo-area span {
+    display: none;
+  }
+
+  .menu-header {
+    gap: 8px;
+  }
+
+  .menu-header a,
+  #theme-toggle {
+    padding-inline: 10px;
+    font-size: 13px;
+  }
+}
+
 @media (max-width: 768px) {
   header {
     padding: 16px 20px;
@@ -391,6 +468,19 @@ header {
     background: transparent;
     color: var(--text-primary);
     border: none;
+  }
+
+  .menu-header li,
+  .menu-header button {
+    width: 100%;
+  }
+
+  .menu-header .admin-access,
+  .admin-logout {
+    justify-content: center;
+    min-height: 46px;
+    color: var(--text-primary);
+    border-color: rgba(128, 128, 128, 0.35);
   }
   .menu-header a:hover {
     background: var(--primary);

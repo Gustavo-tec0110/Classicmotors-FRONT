@@ -39,10 +39,39 @@ function requireAdminSession() {
 
 const adminToken = requireAdminSession();
 
-function authFetch(url, options = {}) {
+function clearAdminSession() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("userPayload");
+}
+
+function redirectToLogin() {
+  clearAdminSession();
+  window.location.replace("../login.html");
+}
+
+async function authFetch(url, options = {}) {
   const headers = new Headers(options.headers || {});
   headers.set("Authorization", `Bearer ${adminToken}`);
-  return fetch(url, { ...options, headers });
+  const response = await fetch(url, { ...options, headers });
+  if (response.status === 401 || response.status === 403) {
+    redirectToLogin();
+    throw new Error("Sessão administrativa expirada.");
+  }
+  return response;
+}
+
+async function validateAdminSession() {
+  if (!adminToken) return false;
+  try {
+    const response = await authFetch(`${getBaseUrl()}/auth/session`);
+    if (!response.ok) {
+      redirectToLogin();
+      return false;
+    }
+    return response.ok;
+  } catch {
+    return false;
+  }
 }
 
 /* =========================
@@ -549,8 +578,7 @@ function initDarkMode() {
 
 document.querySelector(".sair-btn")?.addEventListener("click", (event) => {
   event.preventDefault();
-  localStorage.removeItem("token");
-  localStorage.removeItem("userPayload");
+  clearAdminSession();
   window.location.href = "../index.html";
 });
 
@@ -590,8 +618,11 @@ initBarraPrioridade();
 /* =========================
    INIT
 ========================= */
-if (adminToken) {
-  carregarCarros();
+async function initAdminPanel() {
+  if (!(await validateAdminSession())) return;
+  await carregarCarros();
   togglePrecoAntigo();
-  document.addEventListener("DOMContentLoaded", initDarkMode);
+  initDarkMode();
 }
+
+if (adminToken) initAdminPanel();

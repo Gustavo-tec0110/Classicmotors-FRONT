@@ -39,12 +39,6 @@
       <nav class="nav-menu" role="navigation">
         <ul class="menu-header">
           <li>
-            <button id="btn-admin" style="display: none">
-              <i class="fas fa-user-shield"></i>área Admin
-            </button>
-          </li>
-
-          <li>
             <a href="#"><i class="fas fa-car"></i>Favoritos</a>
           </li>
 
@@ -53,13 +47,23 @@
           </li>
 
           <li>
-            <a href="admin/admin.html"
+            <a href="#area-busca"
               ><i class="fas fa-question-circle"></i>Ajuda</a
             >
           </li>
 
-          <li>
-            <a href="login.html"> <i class="fas fa-tools"></i>Login </a>
+          <li class="admin-access-item">
+            <a id="admin-access" class="admin-access" href="login.html">
+              <i class="fas fa-lock" aria-hidden="true"></i>
+              <span>Acesso administrativo</span>
+            </a>
+          </li>
+
+          <li class="admin-logout-item" hidden>
+            <button id="admin-logout" class="admin-logout" type="button">
+              <i class="fas fa-right-from-bracket" aria-hidden="true"></i>
+              Sair
+            </button>
           </li>
 
           <li>
@@ -175,9 +179,14 @@
       <p>
         Projeto Classic Motors &mdash; Feito por <strong>Gustavo Lopes</strong>
       </p>
+      <p class="portfolio-notice">
+        Projeto de portfólio <span aria-hidden="true">&bull;</span> Ambiente de
+        demonstração
+      </p>
     </footer>
 
     <script src="java/api-config.js"></script>
+    <script src="java/admin-session.js"></script>
     <script src="java/script.js"></script>
   </body>
 </html>
