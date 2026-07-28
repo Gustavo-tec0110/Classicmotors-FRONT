@@ -16,7 +16,9 @@ Interface responsiva para consulta e administração de anúncios automotivos. O
 
 ## Screenshots
 
-![Tela inicial do Classic Motors](docs/screenshots/home.png)
+<p align="center">
+  <img src="docs/screenshots/home.png" alt="Tela inicial do Classic Motors" width="100%">
+</p>
 
 ## Demonstração
 
@@ -39,7 +41,7 @@ O serviço utiliza a modalidade gratuita do Render e pode levar alguns segundos 
 - login administrativo;
 - sessão persistida no navegador;
 - área administrativa para manutenção de anúncios;
-- integração REST com o backend Classic Motors.
+- integração REST com o backend Classic Motors;
 - busca combinada com categoria e ordenação por preço, prioridade ou ano;
 - estados explícitos de carregamento, erro, cache, resultado vazio e imagem
   indisponível;
@@ -59,7 +61,7 @@ flowchart LR
 
 HTML5, CSS3 e JavaScript sem framework. A validação automatizada usa Python apenas como ferramenta de CI para verificar a sintaxe básica e referências locais dos documentos.
 
-## Como executar localmente
+## Como executar
 
 Por usar módulos e requisições HTTP, sirva a pasta com um servidor local:
 
@@ -104,7 +106,7 @@ O comando percorre todos os HTMLs e falha quando uma referência local aponta pa
 
 O frontend armazena o token JWT no `localStorage`, uma escolha aceitável para este protótipo, mas que aumenta o impacto de uma eventual falha de XSS. Para produção, a recomendação é migrar a sessão para cookie `HttpOnly`, definir CSP e revisar todo conteúdo dinâmico antes de inseri-lo no DOM.
 
-## Próximos passos
+## Próximas melhorias
 
 - [x] centralizar a URL da API e distinguir execução local de produção;
 - [ ] substituir armazenamento de token por cookie seguro;
