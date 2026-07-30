@@ -105,33 +105,80 @@
       <button class="btn-buscar">Buscar</button>
     </section>
     <section class="catalog-controls" aria-label="Filtros do catálogo">
-      <label>
-        Categoria
-        <select id="filtro-categoria">
-          <option value="">Todas</option>
-          <option value="ofertas">Ofertas do dia</option>
-          <option value="classicos">Clássicos brasileiros</option>
-          <option value="modernos">Novos e modernos</option>
-        </select>
-      </label>
-      <label>
-        Ordenar por
-        <select id="ordenacao">
-          <option value="priority">Destaques</option>
-          <option value="price_asc">Menor preço</option>
-          <option value="price_desc">Maior preço</option>
-          <option value="year_desc">Mais recentes</option>
-        </select>
-      </label>
+      <div class="catalog-filter">
+        <span class="catalog-filter-icon" aria-hidden="true">
+          <i class="fas fa-layer-group"></i>
+        </span>
+        <div class="catalog-filter-content">
+          <span id="categoria-label" class="catalog-filter-label">Categoria</span>
+          <div class="custom-select">
+            <select id="filtro-categoria" tabindex="-1" aria-hidden="true">
+              <option value="">Todas</option>
+              <option value="ofertas">Ofertas do dia</option>
+              <option value="classicos">Clássicos brasileiros</option>
+              <option value="modernos">Novos e modernos</option>
+            </select>
+            <button
+              type="button"
+              class="custom-select-trigger"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              aria-labelledby="categoria-label categoria-value"
+            >
+              <span id="categoria-value" class="custom-select-value">Todas</span>
+              <i class="fas fa-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div
+              class="custom-select-menu"
+              role="listbox"
+              aria-labelledby="categoria-label"
+              hidden
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div class="catalog-filter">
+        <span class="catalog-filter-icon" aria-hidden="true">
+          <i class="fas fa-arrow-down-wide-short"></i>
+        </span>
+        <div class="catalog-filter-content">
+          <span id="ordenacao-label" class="catalog-filter-label">Ordenar por</span>
+          <div class="custom-select">
+            <select id="ordenacao" tabindex="-1" aria-hidden="true">
+              <option value="priority">Destaques</option>
+              <option value="price_asc">Menor preço</option>
+              <option value="price_desc">Maior preço</option>
+              <option value="year_desc">Mais recentes</option>
+            </select>
+            <button
+              type="button"
+              class="custom-select-trigger"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              aria-labelledby="ordenacao-label ordenacao-value"
+            >
+              <span id="ordenacao-value" class="custom-select-value">Destaques</span>
+              <i class="fas fa-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div
+              class="custom-select-menu"
+              role="listbox"
+              aria-labelledby="ordenacao-label"
+              hidden
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div
+        id="catalog-status"
+        class="catalog-status"
+        role="status"
+        aria-live="polite"
+      >
+        <i class="fas fa-car-side" aria-hidden="true"></i>
+        <span>Carregando veículos...</span>
+      </div>
     </section>
-    <div
-      id="catalog-status"
-      class="catalog-status"
-      role="status"
-      aria-live="polite"
-    >
-      Carregando veículos...
-    </div>
 
     <section
       id="secao-resultados"
