@@ -7,6 +7,7 @@ let carrosData = []; // Variável global para armazenar os dados do back-end
 document.addEventListener("DOMContentLoaded", () => {
   initDarkMode();
   initPublicNavigation();
+  initCustomSelects();
   carregarCarros();
   configurarBusca(); // Inicializa os ouvintes da busca
 });
@@ -30,12 +31,141 @@ function initPublicNavigation() {
     if (event.target.closest("a, button")) setOpen(false);
   });
 }
+
+function initCustomSelects() {
+  const customSelects = [...document.querySelectorAll(".custom-select")];
+
+  const closeSelect = (customSelect) => {
+    const trigger = customSelect.querySelector(".custom-select-trigger");
+    const menu = customSelect.querySelector(".custom-select-menu");
+    if (!trigger || !menu) return;
+
+    trigger.setAttribute("aria-expanded", "false");
+    customSelect.classList.remove("is-open");
+    menu.hidden = true;
+  };
+
+  const closeOthers = (current) => {
+    customSelects.forEach((customSelect) => {
+      if (customSelect !== current) closeSelect(customSelect);
+    });
+  };
+
+  customSelects.forEach((customSelect) => {
+    const select = customSelect.querySelector("select");
+    const trigger = customSelect.querySelector(".custom-select-trigger");
+    const valueLabel = customSelect.querySelector(".custom-select-value");
+    const menu = customSelect.querySelector(".custom-select-menu");
+    if (!select || !trigger || !valueLabel || !menu) return;
+
+    const options = [...select.options];
+    const optionButtons = options.map((option) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "custom-select-option";
+      button.dataset.value = option.value;
+      button.setAttribute("role", "option");
+      button.innerHTML = `
+        <span>${option.textContent}</span>
+        <i class="fas fa-check" aria-hidden="true"></i>
+      `;
+      menu.appendChild(button);
+      return button;
+    });
+
+    const sync = () => {
+      const selected = options.find((option) => option.value === select.value);
+      valueLabel.textContent = selected?.textContent || "";
+      optionButtons.forEach((button) => {
+        const isSelected = button.dataset.value === select.value;
+        button.classList.toggle("is-selected", isSelected);
+        button.setAttribute("aria-selected", String(isSelected));
+      });
+    };
+
+    const choose = (button) => {
+      select.value = button.dataset.value;
+      sync();
+      closeSelect(customSelect);
+      select.dispatchEvent(new Event("change", { bubbles: true }));
+      trigger.focus();
+    };
+
+    const openSelect = () => {
+      closeOthers(customSelect);
+      customSelect.classList.add("is-open");
+      trigger.setAttribute("aria-expanded", "true");
+      menu.hidden = false;
+      (
+        optionButtons.find((button) => button.classList.contains("is-selected")) ||
+        optionButtons[0]
+      )?.focus();
+    };
+
+    trigger.addEventListener("click", () => {
+      if (customSelect.classList.contains("is-open")) closeSelect(customSelect);
+      else openSelect();
+    });
+
+    trigger.addEventListener("keydown", (event) => {
+      if (["ArrowDown", "ArrowUp", "Enter", " "].includes(event.key)) {
+        event.preventDefault();
+        openSelect();
+      }
+    });
+
+    optionButtons.forEach((button, index) => {
+      button.addEventListener("click", () => choose(button));
+      button.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+          event.preventDefault();
+          const direction = event.key === "ArrowDown" ? 1 : -1;
+          optionButtons[
+            (index + direction + optionButtons.length) % optionButtons.length
+          ].focus();
+        }
+        if (event.key === "Home" || event.key === "End") {
+          event.preventDefault();
+          optionButtons[event.key === "Home" ? 0 : optionButtons.length - 1].focus();
+        }
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          choose(button);
+        }
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeSelect(customSelect);
+          trigger.focus();
+        }
+      });
+    });
+
+    select.addEventListener("change", sync);
+    sync();
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".custom-select")) {
+      customSelects.forEach(closeSelect);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") customSelects.forEach(closeSelect);
+  });
+}
+
+function setCatalogStatus(message) {
+  const status = document.getElementById("catalog-status");
+  const text = status?.querySelector("span");
+  if (text) text.textContent = message;
+  else if (status) status.textContent = message;
+}
 /* =========================
     1. CARREGAR CARROS
 ========================== */
 async function carregarCarros() {
-  const status = document.getElementById("catalog-status");
-  if (status) status.textContent = "Carregando veículos...";
+  setCatalogStatus("Carregando veículos...");
   try {
     carrosData = API ? await API.fetchCarrosJson() : [];
 
@@ -45,11 +175,11 @@ async function carregarCarros() {
 
     renderizarCarros(carrosData);
     configurarSetas();
-    if (status) {
-      status.textContent = carrosData.length
+    setCatalogStatus(
+      carrosData.length
         ? `${carrosData.length} veículos disponíveis.`
-        : "Nenhum veículo disponível por enquanto.";
-    }
+        : "Nenhum veículo disponível por enquanto.",
+    );
   } catch (err) {
     try {
       const cache = localStorage.getItem(CARROS_CACHE_KEY);
@@ -59,17 +189,15 @@ async function carregarCarros() {
         carrosData = carrosCache;
         renderizarCarros(carrosData);
         configurarSetas();
-        if (status)
-          status.textContent =
-            "API indisponível. Exibindo o último catálogo salvo.";
+        setCatalogStatus("API indisponível. Exibindo o último catálogo salvo.");
         return;
       }
     } catch {}
 
     console.error("Erro ao buscar carros:", err);
-    if (status)
-      status.textContent =
-        "Não foi possível carregar os veículos. Tente novamente em instantes.";
+    setCatalogStatus(
+      "Não foi possível carregar os veículos. Tente novamente em instantes.",
+    );
   }
 }
 
